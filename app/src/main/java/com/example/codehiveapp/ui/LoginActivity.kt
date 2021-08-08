@@ -1,9 +1,11 @@
-package com.example.codehiveapp
+package com.example.codehiveapp.ui
+
+import com.example.codehiveapp.R
+
+//jjjpackage com.example.codehiveapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.telecom.Call
 import android.widget.*
 import com.example.codehiveapp.Api.ApiClient
 import com.example.codehiveapp.Api.ApiInterface
@@ -56,15 +58,18 @@ class LoginActivity : AppCompatActivity() {
                     etPasswordLogin.setError("password is required")
                 }
 
-            }
 
-                var loginRequest = LoginRequest(
-                    email=email,password=password
+
+
+            var loginRequest = LoginRequest(
+                   email=email,
+
+                    password=password
 
                 )
 
                 val retrofit = ApiClient.buildApiClient(ApiInterface::class.java)
-                var request = login(LoginRequest)
+                var request = retrofit.loginStudent(loginRequest)
                 request.enqueue(object : Callback<LoginResponse> {
                     override fun onResponse(call: retrofit2.Call<LoginResponse>, response: Response<LoginResponse>) {
                         if (response.isSuccessful){
@@ -89,7 +94,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-//    data class ApiError(var errors: List<String>)
+    data class ApiError(var errors: List<String>)
+    }
 
 
 
