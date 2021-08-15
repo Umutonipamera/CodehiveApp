@@ -11,16 +11,20 @@ class UserViewModel {
     var userRepository = UserRepository()
 
 
-    fun registerStudent(registrationRequest: RegistrationRequest) {
-        viewModelScope.launch {
-            var response = userRepository.registerStudent(registrationRequest)
-            if (response.isSuccessful) {
+
+
+    fun registerUser(registrationRequest: RegistrationRequest){
+        ViewModelScope.launch {
+        var response = userRepository.registerStudent(registrationRequest)
+            if (response.isSuccessful){
                 registrationLiveData.postValue(response.body())
-            } else {
+            }
+            else{
                 regFailedLiveData.postValue(response.errorBody()?.string())
             }
         }
     }
+
 }
 
 

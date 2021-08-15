@@ -10,6 +10,7 @@ import com.example.codehiveapp.viewModel.UserViewModel
 
 
 
+
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding:ActivityMainBinding
@@ -24,17 +25,32 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.btnRegister.setClickListener{
-            var regRequest=RegistrationRequest(
-                name=binding.etName.toString(),
-                phoneNumber = binding.etPhoneNumber.toString(),
-                email = binding.etEmail.toString(),
-                dateOfBirth = binding.etDob.toString(),
-                password = binding.etPassword.toString(),
-            )
-
-            userViewModel.registerStudent(regRequest)
+        binding.btnRegister.setClickListener {
+            registerStudent()
+        }
     }
+    fun registerStudent(){
+
+        var name=binding.etName.toString()
+        var phoneNumber = binding.etPhoneNumber.toString()
+        var email = binding.etEmail.toString()
+        var dateOfBirth = binding.etDob.toString()
+        var password = binding.etPassword.toString()
+        var nationality = binding.etNationality.toString()
+        var registrationRequest =RegistrationRequest(
+            name = name,
+            phoneNumber = phoneNumber,
+            email = email,
+            dateOfBirth = dateOfBirth,
+            password = password,
+            nationality = nationality
+        )
+
+
+
+            userViewModel.registerUser(registrationRequest)
+
+
         userViewModel.registrationLiveData.observe(this,
             { regResponse ->
                 if (!regResponse.studentId.isNullOrEmpty()) {
@@ -58,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
 //        castViews()
 //        clickRegister()
-    }
+
 
 //    fun castViews(){
 //        etName = findViewById(R.id.etName)

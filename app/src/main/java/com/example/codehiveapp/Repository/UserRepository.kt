@@ -7,25 +7,33 @@ import com.example.codehiveapp.modules.LoginRequest
 import com.example.codehiveapp.modules.LoginResponse
 import com.example.codehiveapp.modules.RegistrationRequest
 import com.example.codehiveapp.modules.RegistrationResponse
-import okhttp3.Dispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 
-class UserRepository{
-    var apiInterface=ApiClient.buildApiClient(ApiInterface::class.java)
+class UserRepository {
+    var apiInterface = ApiClient.buildApiClient(ApiInterface::class.java)
     suspend fun registerStudent(registrationRequest: RegistrationRequest):
-            Response<RegistrationResponse> = withContext(Dispatcher.IO{
+            Response<RegistrationResponse> = withContext(Dispatchers.IO) {
 
-             var response=apiInterface.registerStudent(registrationRequest)
-             return@withContext response
-            })
-}
-    suspend fun login(loginRequest: LoginRequest):Response<LoginResponse> =
-       withContext(Dispatchers.IO){
-    var response = apiInterface.loginStudent(loginRequest)
-    return@withContext response
 
-}
+        var response = apiInterface.registerStudent(registrationRequest)
+            return@withContext response
+
+        }
+
+
+        suspend fun login(loginRequest: LoginRequest): Response<LoginResponse> =
+            withContext(Dispatchers.IO) {
+                var response = apiInterface.loginStudent(loginRequest)
+                return@withContext response
+            }
+    }
+
+
+
+
 
 
 

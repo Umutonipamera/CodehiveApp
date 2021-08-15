@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodehiveApp">
-        <activity android:name=".ui.CoursesActivity"></activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".courses" />
+        <activity
+            android:name=".ui.FetchCourses"
+            android:exported="true" />
+        <activity android:name=".ui.CoursesActivity" />
+        <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
