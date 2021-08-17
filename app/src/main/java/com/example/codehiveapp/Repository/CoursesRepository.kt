@@ -14,7 +14,7 @@ class CoursesRepository {
     suspend fun coursesRes(courseResponse: CourseResponse):
             Response<CourseResponse> =
         withContext(Dispatchers.IO){
-            var response = apiInterface.coursesRes(courseResponse)
+            var response = apiInterface.courseRes(courseResponse)
             return@withContext response
         }
 
