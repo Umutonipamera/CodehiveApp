@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CodehiveApp">
         <activity
-            android:name=".ui.FetchCourses"
+            android:name=".ui.login2"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Course"
             android:exported="true" />
         <activity android:name=".ui.CoursesActivity" />
         <activity android:name=".ui.LoginActivity" />
